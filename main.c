@@ -1,8 +1,10 @@
 #include "general.h"
 #include "account.h"
+#include "thirty.h"
+
+extern Biodata bioUser;
 
 int main() {
-    double x = scanDouble();
-    printf("X = %lf", x);
+    introduction();
     return 0;
 }

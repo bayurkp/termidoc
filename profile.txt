@@ -1,1 +1,1 @@
-username,nama,tanggallahir,jeniskelamin,tinggibadan,beratbadan
+admin,Admin,1-1-2001,L,185,85
