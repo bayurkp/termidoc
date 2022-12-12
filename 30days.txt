@@ -1,1 +1,0 @@
-username,hari1,hari2,...,hari30
