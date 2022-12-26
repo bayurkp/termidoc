@@ -1,0 +1,60 @@
+1. Dalam sebulan ini, pernahkah Anda merasa kesal karena sesuatu terjadi secara tidak terduga?
+   a. Tidak Pernah
+   b. Jarang 
+   c. Kadang-kadang
+   d. Cukup sering
+   e. Sangat sering
+2. Merasa tidak dapat mengendalikan hal-hal penting dalam hidupmu? 
+   a. Tidak Pernah
+   b. Jarang 
+   c. Kadang-kadang
+   d. Cukup sering
+   e. Sangat sering
+3. Merasa gelisah dan stres?
+   a. Tidak Pernah
+   b. Jarang 
+   c. Kadang-kadang
+   d. Cukup sering
+   e. Sangat sering
+4. Merasa ragu terhadap kemampuanmu dalam menangani masalah pribadi?
+   a. Tidak Pernah
+   b. Jarang 
+   c. Kadang-kadang
+   d. Cukup sering
+   e. Sangat sering
+5. Merasa ragu bahwa segala sesuatu berjalan sesuai keinginanmu?
+   a. Tidak Pernah
+   b. Jarang 
+   c. Kadang-kadang
+   d. Cukup sering
+   e. Sangat sering
+6. Menemukan bahwa kamu tidak dapat mengatasi segala hal yang harus dilakukan?
+   a. Tidak Pernah
+   b. Jarang 
+   c. Kadang-kadang
+   d. Cukup sering
+   e. Sangat sering
+7. Merasa sulit mengendalikan hal-hal yang mengganggu dalam hidupmu?
+   a. Tidak Pernah
+   b. Jarang 
+   c. Kadang-kadang
+   d. Cukup sering
+   e. Sangat sering
+8. Merasa dapat mengendalikan hal-hal dalam hidupmu? 
+   a. Tidak Pernah
+   b. Jarang 
+   c. Kadang-kadang
+   d. Cukup sering
+   e. Sangat sering
+9. Merasa marah karena hal-hal terjadi di luar kendalimu?
+   a. Tidak Pernah
+   b. Jarang 
+   c. Kadang-kadang
+   d. Cukup sering
+   e. Sangat sering
+10. Merasa kesulitanmu sangat banyak sehingga kamu tidak mampu mengatasinya?
+   a. Tidak Pernah
+   b. Jarang 
+   c. Kadang-kadang
+   d. Cukup sering
+   e. Sangat sering

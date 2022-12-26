@@ -1,11 +1,32 @@
 #include "headers\general.h"
 #include "headers\account.h"
 #include "headers\thirty.h"
+#include "headers\calculator.h"
 
 extern Biodata bioUser;
 
 // Modular untuk menampilkan pengenalan program
 void introduction() {
+    system("cls || clear");
+    printf(BLUE BOLD ". . . . . . . . . . . .\n" RESET);
+    printf(BLUE BOLD ". . . . . . . . . . . . .\n" RESET);
+    printf(BLUE BOLD ". .                     . .\n" RESET);
+    printf(BLUE BOLD ". .                      . .\n" RESET);
+    printf(BLUE BOLD ". .                       . .\n" RESET);
+    printf(BLUE BOLD ". .    TERMIDOC           . .\n" RESET);
+    printf(BLUE BOLD ". .    . . . . . .        . .\n" RESET);
+    printf(BLUE BOLD ". .    . . . . . .        . .\n" RESET);
+    printf(BLUE BOLD ". .        . .            . .\n" RESET);
+    printf(BLUE BOLD ". .        . .            . .\n" RESET);
+    printf(BLUE BOLD ". .        . .      . .   . .\n" RESET);
+    printf(BLUE BOLD ". .         . . .  . .    . .\n" RESET);
+    printf(BLUE BOLD ". .           . . . .     . .\n" RESET);
+    printf(BLUE BOLD ". .                       . .\n" RESET);
+    printf(BLUE BOLD ". .                      . .\n" RESET);
+    printf(BLUE BOLD ". . . . . . . . . . . . . .\n" RESET);
+    printf(BLUE BOLD ". . . . . . . . . . . . .\n" RESET);
+    getch();
+    
     system("cls || clear");
     char option;
     printf(BOLD "Termidoc\n" BOLD_END);
@@ -40,6 +61,7 @@ void introduction() {
     }
 }
 
+// Modular untuk menampilkan menu utama dari user premium
 void mainMenuPremium(char gender) {
     system("cls || clear");
     char option;
@@ -52,9 +74,9 @@ void mainMenuPremium(char gender) {
     printf("[ 4] Kalkulator Stres\n");
     printf("[ 5] Kalkulator Risiko Diabetes\n");
     printf("[ 6] Kalkulator Risiko Jantung\n");
-    printf("[ 7] Kalkulator Menstruasi\n");
+    printf("[ 7] Tracking Menstruasi\n");
     printf("[ 8] Rumah sakit Terdekat\n");
-    printf("[ 9] Apotik Terdekat\n");
+    printf("[ 9] Apotek Terdekat\n");
     printf("[10] Lapangan Terdekat\n");
     printf("[11] Gym Terdekat\n");
     printf("[12] Berita Kesehatan dan Olahraga\n");
@@ -73,21 +95,22 @@ void mainMenuPremium(char gender) {
             konsultasiBarengTermy(bioUser.username);
             break;
         case 4:
-            printf("Maaf, masih dalam perbaikan.\n");
+            sHeader();
             break;
         case 5:
-            printf("Maaf, masih dalam perbaikan.\n");
+            dOpening();
             break;
         case 6:
-            printf("Maaf, masih dalam perbaikan.\n");
+            jStart();
             break;
         case 7:
             if(gender == 'L') {
                 printf("Maaf, gender Anda tidak sesuai.\n");
+                break;
             } else {
-                printf("Maaf, masih dalam perbaikan.\n");
+                mStart();
+                break;
             }
-            break;
         case 8:
             system("start https://www.google.com/search?q=Rumah+Sakit+Terdekat");
             break;
@@ -125,7 +148,7 @@ void mainMenuPremium(char gender) {
     premium(bioUser.username);
 }
 
-// Modular untuk menampilkan menu utama
+// Modular untuk menampilkan menu utama dari user basic
 void mainMenuBasic(char gender) {
     system("cls || clear");
     char option;
@@ -136,9 +159,9 @@ void mainMenuBasic(char gender) {
     printf("[ 2] Kalkulator Stres\n");
     printf("[ 3] Kalkulator Risiko Diabetes\n");
     printf("[ 4] Kalkulator Risiko Jantung\n");
-    printf("[ 5] Kalkulator Menstruasi\n");
+    printf("[ 5] Tracking Menstruasi\n");
     printf("[ 6] Rumah sakit Terdekat\n");
-    printf("[ 7] Apotik Terdekat\n");
+    printf("[ 7] Apotek Terdekat\n");
     printf("[ 8] Lapangan Terdekat\n");
     printf("[ 9] Gym Terdekat\n");
     printf("[10] Berita Kesehatan dan Olahraga\n");
@@ -151,19 +174,19 @@ void mainMenuBasic(char gender) {
             myProfile();
             break;
         case 2:
-            printf("Maaf, masih dalam perbaikan.\n");
+            sHeader();
             break;
         case 3:
-            printf("Maaf, masih dalam perbaikan.\n");
+            dOpening();
             break;
         case 4:
-            printf("Maaf, masih dalam perbaikan.\n");
+            jStart();
             break;
         case 5:
             if(gender == 'L') {
                 printf("Maaf, gender Anda tidak sesuai.\n");
             } else {
-                printf("Maaf, masih dalam perbaikan.\n");
+                mStart();
             }
             break;
         case 6:
@@ -457,6 +480,7 @@ void countdown(int hours, int minutes, int seconds) {
     printf("\n");
 }
 
+// Modular untuk melakukan encoding terhadap plain text
 void encode(char *plain, char *encoded) {
     int i;
     int j;

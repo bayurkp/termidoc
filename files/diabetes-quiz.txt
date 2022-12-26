@@ -1,0 +1,18 @@
+1. Apakah kakek, bibi, paman, atau sepupu pertama pernah didiagnosis Diabetes?
+   a. Ya
+   b. Tidak
+2. Apakah orang tua, saudara kandung, atau anak kandung pernah didiagnosis Diabetes?
+   a. Ya
+   b. Tidak
+3. Apakah kamu pernah memiliki kadar gula darah yang tinggi?
+   a. Ya
+   b. Tidak
+4. Apakah kamu sehari-hari pernah mengkonsumsi obat darah tinggi?
+   a. Ya
+   b. Tidak
+5. Apakah kamu berolahraga selama lebih dari 30 menit setiap hari? 
+   a. Ya
+   b. Tidak
+6. Seberapa sering kamu mengkonsumsi sayur atau buah? 
+   a. Jarang
+   b. Setiap hari

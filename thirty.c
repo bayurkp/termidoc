@@ -4,6 +4,7 @@
 
 extern Biodata bioUser;
 
+// Modular untuk mengidentifikasi eksitensi user pada #30DaysChallenges
 void thirtyDaysChallenges() {
     if(checkChallenger(bioUser.username)) {
         oldChallenger();
@@ -12,6 +13,7 @@ void thirtyDaysChallenges() {
     }
 }
 
+// Modular untuk user baru pada #30DaysChallenges
 void newChallenger() {
     char option;
     system("cls || clear");
@@ -43,6 +45,7 @@ void newChallenger() {
     }   
 }
 
+// Modular untuk user lama pada #30DaysChallenges
 void oldChallenger() {
     printf("#30DaysChallanges");
     system("cls || clear");
@@ -178,6 +181,7 @@ void todaysChallenges(char *username) {
     }
 }
 
+// Modular pemanasan
 void warmUp() {
     printf(BOLD "0. Pemanasan" BOLD_END);
     printf("\n---------------\n");
@@ -188,6 +192,7 @@ void warmUp() {
     getch();
 }
 
+// Modular push up
 int pushUp(int day) {
     int ret = 0;
     char option;
@@ -227,6 +232,7 @@ int pushUp(int day) {
     return ret;
 }
 
+// Modular sit up
 int sitUp(int day) {
     int ret = 0;
     char option;
@@ -266,6 +272,7 @@ int sitUp(int day) {
     return ret;
 }
 
+// Modular tantangan berlari
 double run(int day) {
     double time;
     char option;
@@ -326,6 +333,7 @@ double run(int day) {
     return range / time;
 }
 
+// Modular untuk menampilkan leaderboard
 void leaderboard(char *username) {
     struct Challengers {
         char username[100];
@@ -414,6 +422,7 @@ bool checkChallenger(char *username) {
     }
 }
 
+// Modular untuk memperbarui skor
 void updateScore(char *username, int day, int score) {
     char tempUsername[100];
     int  tempStartDate;

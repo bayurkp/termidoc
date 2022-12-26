@@ -1,6 +1,7 @@
 #include "headers\general.h"
 #include "headers\account.h"
 #include "headers\thirty.h"
+#include "headers\calculator.h"
 
 Biodata bioUser;
 
@@ -301,6 +302,7 @@ void myProfile() {
     }
 }
 
+// Modular untuk menampilkan iklan 
 void premium(char *username) {
     system("cls || clear");
     if(!checkPremium(username)) {
@@ -316,7 +318,8 @@ void premium(char *username) {
         printf("Kalkulator Stress          |    V    |   V   \n");
         printf("Kalkulator Risiko Diabetes |    V    |   V   \n");
         printf("Kalkulator Risiko Jantung  |    V    |   V   \n");
-        printf("Kalkulator Menstruasi      |    V    |   V   \n\n");
+        printf("Kalkulator Menstruasi      |    V    |   V   \n");
+        printf("Iklan                      |    X    |   V   \n\n");
 
         printf("*(Y untuk MAU / N untuk LEWATI)\n> ");
         char option;
@@ -337,6 +340,7 @@ void premium(char *username) {
     }
 }
 
+// Modular untuk pembayaran
 void payment(char *username) {
     system("cls || clear");
     time_t t = time(NULL);
@@ -368,7 +372,7 @@ void payment(char *username) {
     }
 
     srand(time(NULL));
-    randomCode = (rand() % (9999 - 1000 + 1)) + 1000;
+    randomCode = (rand() % (999999 - 100000 + 1)) + 100000;
     printf("Kode konfirmasi : %d\n", randomCode);
     printf("Konfirmasi dengan memasukkan angka acak berikut\n> ");
     FILE *premiumFile = fopen("files/premium.txt", "a+");
@@ -387,6 +391,7 @@ void payment(char *username) {
     }
 }
 
+// Modular untuk mengidentifikasi akun premium dari user
 bool checkPremium(char *username) {
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
@@ -430,6 +435,7 @@ bool checkPremium(char *username) {
     }
 }
 
+// Modular untuk menampilkan #KonsultasiBarengTermy
 void konsultasiBarengTermy(char *username) {
     system("cls || clear");
     char confirm;
@@ -493,6 +499,7 @@ void konsultasiBarengTermy(char *username) {
     }
 }
 
+// Modular untuk memperbarui sisa sesi konsultasi
 int updateConsult(char *username) {
     char tempUsername[100];
     int tempDate;
@@ -517,6 +524,7 @@ int updateConsult(char *username) {
     rename("files/temp_premium.txt", "files/premium.txt");
 }
 
+// Modular untuk mengidentifikasi sisa sesi konsultasi
 int checkConsult(char *username) {
     char tempUsername[100];
     int tempDate;

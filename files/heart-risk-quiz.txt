@@ -1,0 +1,15 @@
+1. Apakah Anda merokok? 
+   a. Ya
+   b. Tidak
+2. Apakah Anda pernah diberitahu dokter, suster, atau penyedia layanan kesehatan lain bahwa Anda menderita Diabetes?  
+   a. Ya
+   b. Tidak
+3. Apakah Anda pernah terdiagnosa penyakit jantung koroner, stroke atau penyakit jantung dan pembuluh darah lainnya?
+   a. Ya
+   b. Tidak
+4. Apakah Anda tahu ukuran tekanan darah Anda?
+   a. Ya
+   b. Tidak
+5. Apakah Anda tahu total kolesterol dan tingkat kolesterol “baik” lipoprotein densitas tinggi Anda (HDL)?
+   a. Ya
+   b. Tidak
