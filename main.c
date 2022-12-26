@@ -1,6 +1,6 @@
-#include "general.h"
-#include "account.h"
-#include "thirty.h"
+#include "headers\general.h"
+#include "headers\account.h"
+#include "headers\thirty.h"
 
 extern Biodata bioUser;
 

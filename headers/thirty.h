@@ -11,16 +11,20 @@
 #ifndef THIRTYDAYS_H
 #define THIRTYDAYS_H
 
-typedef struct Challengers {
-    char username[100];
-    int startDate;
-    int score[30];
-} Challengers;
-
-void challenges();
+void thirtyDaysChallenges();
 void newChallenger();
 void oldChallenger();
-void displayScore(char *username);
+void myScore(char *username);
+
+void   todaysChallenges(char *username);
+void   warmUp();
+int    pushUp(int day);
+int    sitUp(int day);
+double run(int day);
+
+void leaderboard(char *username);
+
 bool checkChallenger(char *username);
+void updateScore(char *username, int day, int score);
 
 #endif

@@ -8,7 +8,6 @@
 #include <stdbool.h>
 #include <unistd.h>
 
-
 #ifndef GENERAL_H
 #define GENERAL_H
 
@@ -16,7 +15,8 @@
 #define BOLD_END "\e[m"
 
 void introduction();
-void mainMenu(char gender);
+void mainMenuPremium(char gender);
+void mainMenuBasic(char gender);
 
 int scanInteger();
 double scanDouble();
@@ -24,8 +24,9 @@ char scanChar();
 void scanName(char *name);
 void scanDate(char *tempDate, int *date, int *month, int *year);
 
-void calculateAge(int birthDate, int birthMonth, int birthYear, int *finalDate, int *finalMonth, int *finalYear) ;
-int calculateDays(int firstDate, int firstMonth, int firstYear);
+int  countLeapYears(int month, int year);
+int  differenceDate(int firstDate, int firstMonth, int firstYear, int currentDate, int currentMonth, int currentYear);
+void displayAge(int birthDate, int birthMonth, int birthYear);
 void convertMonth(int monthNumber, char *monthString);
 bool checkDate(int date, int month, int year);
 
@@ -34,6 +35,7 @@ double calculateBMI(int height, int weight, char *bmiCategory);
 void centimetresToFeet(int cms, int *feet, int *inches);
 int kilogramsToPounds(int kg);
 
-void displayCountdown(int seconds);
+void countdown(int hours, int minutes, int seconds);
+void encode(char *plain, char *encoded);
 
 #endif

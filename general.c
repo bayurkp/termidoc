@@ -1,56 +1,38 @@
-#include "general.h"
-#include "account.h"
-#include "thirty.h"
+#include "headers\general.h"
+#include "headers\account.h"
+#include "headers\thirty.h"
 
 extern Biodata bioUser;
 
 // Modular untuk menampilkan pengenalan program
 void introduction() {
+    system("cls || clear");
     char option;
-    printf("                    . .   . .  . .  . . .\n");
-    printf("                    . .   . .  . .  . .  . .\n");
-    printf("                    . .   . .  . .  . .  . . .\n");
-    printf("                    . .                     . .\n");
-    printf("                    . .        . .           . .\n");
-    printf("                    . .        . .            . .");
-    printf("                    . .    . . . . . .        . .\n");
-    printf("                    . .     TERMIDOC          . .\n");
-    printf("                    . .    . . . . . .        . .\n");
-    printf("                    . .        . .            . .\n");
-    printf("                    . .        . .            . .\n");
-    printf("                    . .        . .      . .   . .\n");
-    printf("                    . .         . . .  . .    . .\n");
-    printf("                    . .           . . . .     . .\n");
-    printf("                    . .                       . .\n");
-    printf("                    . .                     . .\n");
-    printf("                    . .   . .  . .  . .  . . .\n");
-    printf("                    . .   . .  . .  . .  . .\n");
-    printf("                    . .   . .  . .  . . .\n\n");
-    printf("Termidoc\n");
-    printf("-------------------------------------------\n");
+    printf(BOLD "Termidoc\n" BOLD_END);
+    printf("---------------\n");
     printf("Halo, Termy disini!\n");
-    printf("-------------------------------------------\n");
+    printf("---------------\n");
     printf("Termidoc adalah program berbasis CLI\n");
     printf("yang dapat membantu Anda untuk menjaga\n");
     printf("kesehatan dan kebugaran badan.\n");
-    printf("-------------------------------------------\n");
+    printf("---------------\n");
     printf("Sebelumnya, apakah Anda telah memiliki\n");
     printf("akun Termidoc? Jika sudah maka Termy\n");
     printf("akan mengarahkan Anda ke menu Sign In.\n");
     printf("*(Y/N)\n");
-    printf("------------------------------------------\n> ");
+    printf("---------------\n> ");
     while(true) {
         option = scanChar();
         option = toupper(option);
         if(option == 'Y') {
             system("cls || clear");
             signIn();
-            mainMenu(bioUser.gender);
+            premium(bioUser.username);
             break;
         } else if(option == 'N') {
             system("cls || clear");
             signUp();
-            mainMenu(bioUser.gender);
+            premium(bioUser.username);
             break;
         } else {
             printf("Format salah\n> ");
@@ -58,8 +40,7 @@ void introduction() {
     }
 }
 
-// Modular untuk menampilkan menu utama
-void mainMenu(char gender) {
+void mainMenuPremium(char gender) {
     system("cls || clear");
     char option;
     int random;
@@ -67,16 +48,17 @@ void mainMenu(char gender) {
     printf("---------------\n");
     printf("[ 1] Profil Saya\n");
     printf("[ 2] #30DaysChallenges\n");
-    printf("[ 3] Kalkulator Stres\n");
-    printf("[ 4] Kalkulator Risiko Diabetes\n");
-    printf("[ 5] Kalkulator Risiko Jantung\n");
-    printf("[ 6] Kalkulator Menstruasi\n");
-    printf("[ 7] Rumah sakit Terdekat\n");
-    printf("[ 8] Apotik Terdekat\n");
-    printf("[ 9] Lapangan Terdekat\n");
-    printf("[10] Gym Terdekat\n");
-    printf("[11] Berita Kesehatan dan Olahraga\n");
-    printf("[12] Keluar\n");
+    printf("[ 3] #KonsultasiBarengTermy\n");
+    printf("[ 4] Kalkulator Stres\n");
+    printf("[ 5] Kalkulator Risiko Diabetes\n");
+    printf("[ 6] Kalkulator Risiko Jantung\n");
+    printf("[ 7] Kalkulator Menstruasi\n");
+    printf("[ 8] Rumah sakit Terdekat\n");
+    printf("[ 9] Apotik Terdekat\n");
+    printf("[10] Lapangan Terdekat\n");
+    printf("[11] Gym Terdekat\n");
+    printf("[12] Berita Kesehatan dan Olahraga\n");
+    printf("[99] Keluar\n");
     printf("---------------\n");
     printf("Mohon masukkan kode pada []\n> ");
     option = scanInteger();
@@ -85,11 +67,10 @@ void mainMenu(char gender) {
             myProfile();
             break;
         case 2:
-            challenges();
-            printf("Maaf, masih dalam perbaikan.\n");
+            thirtyDaysChallenges();
             break;
         case 3:
-            printf("Maaf, masih dalam perbaikan.\n");
+            konsultasiBarengTermy(bioUser.username);
             break;
         case 4:
             printf("Maaf, masih dalam perbaikan.\n");
@@ -98,25 +79,28 @@ void mainMenu(char gender) {
             printf("Maaf, masih dalam perbaikan.\n");
             break;
         case 6:
+            printf("Maaf, masih dalam perbaikan.\n");
+            break;
+        case 7:
             if(gender == 'L') {
                 printf("Maaf, gender Anda tidak sesuai.\n");
             } else {
                 printf("Maaf, masih dalam perbaikan.\n");
             }
             break;
-        case 7:
+        case 8:
             system("start https://www.google.com/search?q=Rumah+Sakit+Terdekat");
             break;
-        case 8:
+        case 9:
             system("start https://www.google.com/search?q=Apotik+Terdekat");
             break;
-        case 9:
+        case 10:
             system("start https://www.google.com/search?q=Lapangan+Olahraga+Terdekat");
             break;
-        case 10:
+        case 11:
             system("start https://www.google.com/search?q=Gym+Terdekat");
             break;
-        case 11:
+        case 12:
             random = rand() % 30;
             printf("%d", random);
             if(random > 25) {
@@ -133,13 +117,92 @@ void mainMenu(char gender) {
                 system("start https://health.kompas.com/");
             }
             break;
-        case 12: 
+        case 99: 
             exit(0);
         default:
-            printf("Maaf, opsi tidak ada\n");
+            printf("Maaf, opsi tidak ada\n> ");
     }
-    mainMenu(gender);
+    premium(bioUser.username);
 }
+
+// Modular untuk menampilkan menu utama
+void mainMenuBasic(char gender) {
+    system("cls || clear");
+    char option;
+    int random;
+    printf(BOLD "Menu Utama\n" BOLD_END);
+    printf("---------------\n");
+    printf("[ 1] Profil Saya\n");
+    printf("[ 2] Kalkulator Stres\n");
+    printf("[ 3] Kalkulator Risiko Diabetes\n");
+    printf("[ 4] Kalkulator Risiko Jantung\n");
+    printf("[ 5] Kalkulator Menstruasi\n");
+    printf("[ 6] Rumah sakit Terdekat\n");
+    printf("[ 7] Apotik Terdekat\n");
+    printf("[ 8] Lapangan Terdekat\n");
+    printf("[ 9] Gym Terdekat\n");
+    printf("[10] Berita Kesehatan dan Olahraga\n");
+    printf("[99] Keluar\n");
+    printf("---------------\n");
+    printf("Mohon masukkan kode pada []\n> ");
+    option = scanInteger();
+    switch(option) {
+        case 1:
+            myProfile();
+            break;
+        case 2:
+            printf("Maaf, masih dalam perbaikan.\n");
+            break;
+        case 3:
+            printf("Maaf, masih dalam perbaikan.\n");
+            break;
+        case 4:
+            printf("Maaf, masih dalam perbaikan.\n");
+            break;
+        case 5:
+            if(gender == 'L') {
+                printf("Maaf, gender Anda tidak sesuai.\n");
+            } else {
+                printf("Maaf, masih dalam perbaikan.\n");
+            }
+            break;
+        case 6:
+            system("start https://www.google.com/search?q=Rumah+Sakit+Terdekat");
+            break;
+        case 7:
+            system("start https://www.google.com/search?q=Apotik+Terdekat");
+            break;
+        case 8:
+            system("start https://www.google.com/search?q=Lapangan+Olahraga+Terdekat");
+            break;
+        case 9:
+            system("start https://www.google.com/search?q=Gym+Terdekat");
+            break;
+        case 10:
+            random = rand() % 30;
+            printf("%d", random);
+            if(random > 25) {
+                system("start https://kumparan.com/channel/bola-sports");
+            } else if(random > 20) {
+                system("start https://health.detik.com/");
+            } else if(random > 15) {
+                system("start https://sport.detik.com/");
+            } else if(random > 10) {
+                system("start https://www.cnnindonesia.com/olahraga");
+            } else if(random > 5) {
+                system("start https://www.cnnindonesia.com/gaya-hidup");
+            } else {
+                system("start https://health.kompas.com/");
+            }
+            break;
+        case 99: 
+            exit(0);
+        default:
+            printf("Maaf, opsi tidak ada\n> ");
+    }
+    premium(bioUser.username);
+}
+
 
 // Modular untuk input bertipe data integer
 int scanInteger() {
@@ -260,53 +323,53 @@ void convertMonth(int monthNumber, char *monthString) {
     }
 }
 
-// Modular untuk menghitung umur
-void calculateAge(int birthDate, int birthMonth, int birthYear, int *finalDate, int *finalMonth, int *finalYear) {
-    time_t t = time(NULL);
-    struct tm tm = *localtime(&t);
-    int presentDate = tm.tm_mday;
-    int presentMonth = tm.tm_mon + 1;
-    int presentYear = tm.tm_year + 1900;
-
-    int months[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    if (birthDate > presentDate) {
-        presentDate = presentDate + months[birthMonth - 1];
-        presentMonth = presentMonth - 1;
-    }
-    if (birthMonth > presentMonth) {
-        presentYear = presentYear - 1;
-        presentMonth = presentMonth + 12;
+// Modular untuk menghitung jumlah tahun kabisat
+int countLeapYears(int month, int year) {
+    int years = year;
+    
+    if(month <= 2) {
+        years--;
     }
 
-    *finalDate = presentDate - birthDate;
-    *finalMonth = presentMonth - birthMonth;
-    *finalYear = presentYear - birthYear;
+    return years / 4 - years / 100 + years / 400;
 }
 
-// Modular untuk menghitung hari
-int calculateDays(int fromDate, int fromMonth, int fromYear) {
+// Modular untuk menghitung jumlah hari dari dua tanggal yang berbeda
+int  differenceDate(int firstDate, int firstMonth, int firstYear, int currentDate, int currentMonth, int currentYear) {
+    int monthDays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    long int n1 = firstYear * 365 + firstDate;
+
+    for (int i = 0; i < firstMonth - 1; i++) {
+        n1 += monthDays[i];
+    }
+
+    n1 += countLeapYears(firstMonth, firstYear);
+  
+    long int n2 = currentYear * 365 + currentDate;
+    for (int i = 0; i < currentMonth - 1; i++) {
+        n2 += monthDays[i];
+    }
+
+    n2 += countLeapYears(currentMonth, currentYear);
+  
+    return n2 - n1;
+}
+
+// Menampilkan umur
+void displayAge(int birthDay, int birthMonth, int birthYear) {
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
-    int presentDate = tm.tm_mday;
-    int presentMonth = tm.tm_mon + 1;
-    int presentYear = tm.tm_year + 1900;
+    int currentDate  = tm.tm_mday;
+    int currentMonth = tm.tm_mon + 1;
+    int currentYear  = tm.tm_year + 1900;
 
-    int months[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    if (fromDate > presentDate) {
-        presentDate = presentDate + months[fromMonth - 1];
-        presentMonth = presentMonth - 1;
-    }
-    if (fromMonth > presentMonth) {
-        presentYear = presentYear - 1;
-        presentMonth = presentMonth + 12;
-    }
+    int diff = differenceDate(birthDay, birthMonth, birthYear, currentDate, currentMonth, currentYear);
+    
+    int years  = diff / 365;
+    int months = (diff - years * 365) / 30;
+    int days   = diff - years * 365 - months * 30;
 
-    int finalDate = presentDate - fromDate;
-    int finalMonth = presentMonth - fromMonth;
-    int finalYear = presentYear - fromYear;
-
-    finalDate = finalDate + (finalMonth * 30) + (finalYear * 365);
-    return finalDate;
+    printf("%d Tahun %d Bulan %d Hari\n", years, months, days);
 }
 
 // Modular untuk validasi tanggal
@@ -374,11 +437,31 @@ int kilogramsToPounds(int kgs) {
 }
 
 // Modular untuk menampilkan countdown 
-void displayCountdown(int seconds) {
-    while(seconds != 0) {
-        printf("Waktu tersisa %d detik\n", seconds);
-        sleep(1);
-        seconds--;
-        system("cls || clear");
+void countdown(int hours, int minutes, int seconds) {
+    while(true) {
+		printf("       \r%d:%d:%d", hours, minutes, seconds);
+		sleep(1);
+		if(seconds != 0){
+			seconds--;
+		} else if(seconds == 0 && minutes != 0){
+			seconds = 59;
+			minutes--;
+		} else if(seconds == 0 && minutes == 0 && hours != 0){
+			hours--;
+			minutes = 59;
+			seconds = 59;
+		} else if(hours == 0 && minutes == 0 && seconds == 0){
+			break;
+		}
+	}
+    printf("\n");
+}
+
+void encode(char *plain, char *encoded) {
+    int i;
+    int j;
+    for(i = 0, j = 0; i < strlen(plain); i++, j += 2) {
+        sprintf((char*)encoded + j, "%02x", plain[i] ^ 0xAA);
     }
+    encoded[j] = '\0';
 }

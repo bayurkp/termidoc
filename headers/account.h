@@ -13,11 +13,21 @@
 
 void signIn();
 void signUp();
+
+
 void scanUsername(char *username);
 bool checkUsername(char *username);
 void scanPassword(char *password);
 bool checkPassword(char *username, char *password);
+
+void premium(char *username);
+bool checkPremium(char *username);
+void payment(char *username);
+
 void myProfile();
+void konsultasiBarengTermy(char *username);
+int  checkConsult(char *username);
+int  updateConsult(char *username);
 
 typedef struct Biodata {
     char username[100];
