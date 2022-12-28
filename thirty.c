@@ -4,7 +4,7 @@
 
 extern Biodata bioUser;
 
-// Modular untuk mengidentifikasi eksitensi user pada #30DaysChallenges
+// Modular untuk mengidentifikasi eksitensi user pada #30DaysChallenges - Bayu
 void thirtyDaysChallenges() {
     if(checkChallenger(bioUser.username)) {
         oldChallenger();
@@ -13,7 +13,7 @@ void thirtyDaysChallenges() {
     }
 }
 
-// Modular untuk user baru pada #30DaysChallenges
+// Modular untuk user baru pada #30DaysChallenges - Bayu
 void newChallenger() {
     char option;
     system("cls || clear");
@@ -45,7 +45,7 @@ void newChallenger() {
     }   
 }
 
-// Modular untuk user lama pada #30DaysChallenges
+// Modular untuk user lama pada #30DaysChallenges - Bayu
 void oldChallenger() {
     printf("#30DaysChallanges");
     system("cls || clear");
@@ -83,7 +83,7 @@ void oldChallenger() {
     oldChallenger();
 }
 
-// Modular menampilkan skor sementara
+// Modular menampilkan skor sementara - Bayu
 void myScore(char *username) {
     printf(BOLD "Skor Saya" BOLD_END);
     printf("\n---------------\n");
@@ -108,7 +108,7 @@ void myScore(char *username) {
     fclose(thirtyFile);
 }
 
-// Modular untuk menjalankan tantangan hari ini
+// Modular untuk menjalankan tantangan hari ini - Bayu
 void todaysChallenges(char *username) {
     char tempUsername[100];
     int  tempStartDate;
@@ -136,6 +136,7 @@ void todaysChallenges(char *username) {
     if(today < 30) {
         if(tempScore[today] == 0) {
             printf(BOLD "Tantangan Hari ke-%d\n" BOLD_END, today + 1);
+            printf("Skor BMI Anda adalah %0.2lf\n", bioUser.bmiScore);
             printf("Apakah Anda sudah siap? Jika ingin kembali silakan input 'N'\n");
             printf("*(Y/N)\n> ");
             while(true) {
@@ -144,11 +145,11 @@ void todaysChallenges(char *username) {
                     system("cls || clear");
                     warmUp();
                     system("cls || clear");
-                    int pushUpScore = pushUp(today);
+                    int pushUpScore = pushUp(today, bioUser.bmiScore);
                     system("cls || clear");
-                    int sitUpScore  = sitUp(today);
+                    int sitUpScore  = sitUp(today, bioUser.bmiScore);
                     system("cls || clear");
-                    double runScore = run(today);
+                    double runScore = run(today, bioUser.bmiScore);
                     system("cls || clear");
                     int totalScore  = pushUpScore + sitUpScore + runScore;
 
@@ -157,6 +158,7 @@ void todaysChallenges(char *username) {
                     printf("Anda telah menyelesaikan tantangan hari ke-%d\n", today + 1);
                     printf("*(tekan apapun untuk kembali ke menu sebelumnya)");
                     updateScore(username, today, totalScore);
+                    updateWeight(username);
                     getch();
                     oldChallenger();
                     break;
@@ -181,19 +183,19 @@ void todaysChallenges(char *username) {
     }
 }
 
-// Modular pemanasan
+// Modular pemanasan - Bayu
 void warmUp() {
     printf(BOLD "0. Pemanasan" BOLD_END);
     printf("\n---------------\n");
     printf("Sebelum menyelesaikan tantangan, ayo lakukan pemanasan!\n");
     printf("*(lakukan pemanasan selama 10 menit!)\n\n");
-    countdown(0, 0, 0);
+    countdown(0, 10, 0);
     printf("\n*(tekan apapun untuk melanjutkan)\n");
     getch();
 }
 
-// Modular push up
-int pushUp(int day) {
+// Modular push up - Bayu
+int pushUp(int day, int bmiScore) {
     int ret = 0;
     char option;
     printf(BOLD "1. Tantangan Push Up" BOLD_END);
@@ -212,28 +214,100 @@ int pushUp(int day) {
     }
 
     printf("\n\nTantangan : \n");
-    if(day < 10) {
-        printf("*(lakukan 10 repetisi sekaligus!)\n");
-        ret += 10;
-    } else if(day >= 10 && day < 15) {
-        printf("*(lakukan 15 repetisi sekaligus!)\n");
-        ret += 15;
-    } else if(day >= 15 && day < 20) {
-        printf("*(lakukan 20 repetisi sekaligus!)\n");
-        ret += 20;
-    } else if (day >= 20) {
-        printf("*(lakukan 25 atau lebih repetisi sekaligus!)\n");
-        ret += 25;
+    if(bmiScore < 18.5) {
+        if(day < 10) {
+            printf("*(lakukan 5 repetisi)\n");
+            ret += 10;
+        } else if(day >= 10 && day < 15) {
+            printf("*(lakukan 8 repetisi)\n");
+            ret += 15;
+        } else if(day >= 15 && day < 20) {
+            printf("*(lakukan 10 repetisi)\n");
+            ret += 20;
+        } else if (day >= 20) {
+            printf("*(lakukan 15 atau lebih repetisi)\n");
+            ret += 25;
+        }
+    } else if(bmiScore >= 18.5 && bmiScore <= 24.9) {
+        if(day < 10) {
+            printf("*(lakukan 10 repetisi)\n");
+            ret += 10;
+        } else if(day >= 10 && day < 15) {
+            printf("*(lakukan 15 repetisi)\n");
+            ret += 15;
+        } else if(day >= 15 && day < 20) {
+            printf("*(lakukan 20 repetisi)\n");
+            ret += 20;
+        } else if (day >= 20) {
+            printf("*(lakukan 25 atau lebih repetisi)\n");
+            ret += 25;
+        }
+    } else if(bmiScore > 24.9 && bmiScore <= 29.9) {
+        if(day < 10) {
+            printf("*(lakukan 5 repetisi)\n");
+            ret += 10;
+        } else if(day >= 10 && day < 15) {
+            printf("*(lakukan 7 repetisi)\n");
+            ret += 15;
+        } else if(day >= 15 && day < 20) {
+            printf("*(lakukan 9 repetisi)\n");
+            ret += 20;
+        } else if (day >= 20) {
+            printf("*(lakukan 12 atau lebih repetisi)\n");
+            ret += 25;
+        }
+    } else if(bmiScore > 24.9 && bmiScore <= 34.9) {
+        if(day < 10) {
+            printf("*(lakukan 4 repetisi)\n");
+            ret += 10;
+        } else if(day >= 10 && day < 15) {
+            printf("*(lakukan 6 repetisi)\n");
+            ret += 15;
+        } else if(day >= 15 && day < 20) {
+            printf("*(lakukan 8 repetisi)\n");
+            ret += 20;
+        } else if (day >= 20) {
+            printf("*(lakukan 10 atau lebih repetisi)\n");
+            ret += 25;
+        }
+    } else if(bmiScore > 34.9 && bmiScore <= 39.9) {
+        if(day < 10) {
+            printf("*(lakukan 3 repetisi)\n");
+            ret += 10;
+        } else if(day >= 10 && day < 15) {
+            printf("*(lakukan 4 repetisi)\n");
+            ret += 15;
+        } else if(day >= 15 && day < 20) {
+            printf("*(lakukan 5 repetisi)\n");
+            ret += 20;
+        } else if (day >= 20) {
+            printf("*(lakukan 6 atau lebih repetisi)\n");
+            ret += 25;
+        }
+    } else {
+        if(day < 10) {
+            printf("*(lakukan 3 repetisi)\n");
+            ret += 10;
+        } else if(day >= 10 && day < 15) {
+            printf("*(lakukan 4 repetisi)\n");
+            ret += 15;
+        } else if(day >= 15 && day < 20) {
+            printf("*(lakukan 5 repetisi)\n");
+            ret += 20;
+        } else if (day >= 20) {
+            printf("*(lakukan 6 atau lebih repetisi)\n");
+            ret += 25;
+        }
     }
-
+    
     printf("*(tekan apapun untuk melanjutkan)\n");
     getch();
 
     return ret;
 }
 
-// Modular sit up
-int sitUp(int day) {
+// Modular sit up - Bayu
+int sitUp(int day, int bmiScore) {
     int ret = 0;
     char option;
     printf(BOLD "2. Tantangan Sit Up" BOLD_END);
@@ -250,20 +324,91 @@ int sitUp(int day) {
             printf("Maaf, opsi tidak ada\n> ");
         }
     }
-    
-    printf("\n\nTantangan : \n");
-    if(day < 10) {
-        printf("*(lakukan 10 repetisi sekaligus!)\n");
-        ret += 10;
-    } else if(day >= 10 && day < 15) {
-        printf("*(lakukan 15 repetisi sekaligus!)\n");
-        ret += 15;
-    } else if(day >= 15 && day < 20) {
-        printf("*(lakukan 20 repetisi sekaligus!)\n");
-        ret += 20;
-    } else if (day >= 20) {
-        printf("*(lakukan 25 atau lebih repetisi sekaligus!)\n");
-        ret += 25;
+
+    if(bmiScore < 18.5) {
+        if(day < 10) {
+            printf("*(lakukan 5 repetisi)\n");
+            ret += 10;
+        } else if(day >= 10 && day < 15) {
+            printf("*(lakukan 8 repetisi)\n");
+            ret += 15;
+        } else if(day >= 15 && day < 20) {
+            printf("*(lakukan 10 repetisi)\n");
+            ret += 20;
+        } else if (day >= 20) {
+            printf("*(lakukan 15 atau lebih repetisi)\n");
+            ret += 25;
+        }
+    } else if(bmiScore >= 18.5 && bmiScore <= 24.9) {
+        if(day < 10) {
+            printf("*(lakukan 10 repetisi)\n");
+            ret += 10;
+        } else if(day >= 10 && day < 15) {
+            printf("*(lakukan 15 repetisi)\n");
+            ret += 15;
+        } else if(day >= 15 && day < 20) {
+            printf("*(lakukan 20 repetisi)\n");
+            ret += 20;
+        } else if (day >= 20) {
+            printf("*(lakukan 25 atau lebih repetisi)\n");
+            ret += 25;
+        }
+    } else if(bmiScore > 24.9 && bmiScore <= 29.9) {
+        if(day < 10) {
+            printf("*(lakukan 5 repetisi)\n");
+            ret += 10;
+        } else if(day >= 10 && day < 15) {
+            printf("*(lakukan 7 repetisi)\n");
+            ret += 15;
+        } else if(day >= 15 && day < 20) {
+            printf("*(lakukan 9 repetisi)\n");
+            ret += 20;
+        } else if (day >= 20) {
+            printf("*(lakukan 12 atau lebih repetisi)\n");
+            ret += 25;
+        }
+    } else if(bmiScore > 24.9 && bmiScore <= 34.9) {
+        if(day < 10) {
+            printf("*(lakukan 4 repetisi)\n");
+            ret += 10;
+        } else if(day >= 10 && day < 15) {
+            printf("*(lakukan 6 repetisi)\n");
+            ret += 15;
+        } else if(day >= 15 && day < 20) {
+            printf("*(lakukan 8 repetisi)\n");
+            ret += 20;
+        } else if (day >= 20) {
+            printf("*(lakukan 10 atau lebih repetisi)\n");
+            ret += 25;
+        }
+    } else if(bmiScore > 34.9 && bmiScore <= 39.9) {
+        if(day < 10) {
+            printf("*(lakukan 3 repetisi)\n");
+            ret += 10;
+        } else if(day >= 10 && day < 15) {
+            printf("*(lakukan 4 repetisi)\n");
+            ret += 15;
+        } else if(day >= 15 && day < 20) {
+            printf("*(lakukan 5 repetisi)\n");
+            ret += 20;
+        } else if (day >= 20) {
+            printf("*(lakukan 6 atau lebih repetisi)\n");
+            ret += 25;
+        }
+    } else {
+        if(day < 10) {
+            printf("*(lakukan 3 repetisi)\n");
+            ret += 10;
+        } else if(day >= 10 && day < 15) {
+            printf("*(lakukan 4 repetisi)\n");
+            ret += 15;
+        } else if(day >= 15 && day < 20) {
+            printf("*(lakukan 5 repetisi)\n");
+            ret += 20;
+        } else if (day >= 20) {
+            printf("*(lakukan 6 atau lebih repetisi)\n");
+            ret += 25;
+        }
     }
 
     printf("*(tekan apapun untuk melanjutkan)\n");
@@ -272,10 +417,11 @@ int sitUp(int day) {
     return ret;
 }
 
-// Modular tantangan berlari
-double run(int day) {
+// Modular tantangan berlari - Bayu
+double run(int day, int bmiScore) {
     double time;
     char option;
+    double range;
     printf(BOLD "3. Tantangan Berlari" BOLD_END);
     printf("\n---------------\n"); 
     printf("Tekan 'Y' untuk menantang dan 'N' untuk menyerah\n");
@@ -292,48 +438,245 @@ double run(int day) {
     }
 
     printf("\n\nTantangan : \n");
-    if(day < 10) {
-        printf("*(berlari selama 15 menit!)\n\n");
-        printf("Sudah siap untuk lari?\n");
-        printf("*(tekan apapun untuk SIAP)\n");
-        getch();
+    if(bmiScore < 18.5) {
+        if(day < 10) {
+            printf("*(berlari selama 5 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
 
-        countdown(0, 0, 0);
-        time = 15;
-    } else if(day >= 10 && day < 15) {
-        printf("*(berlari selama 20 menit!)\n\n");
-        printf("Sudah siap untuk lari?\n");
-        printf("*(tekan apapun untuk SIAP)\n");
-        getch();
+            countdown(0, 5, 0);
+            time = 15;
+        } else if(day >= 10 && day < 15) {
+            printf("*(berlari selama 7 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
 
-        countdown(0, 20, 0);
-        time = 20;
-    } else if(day >= 15 && day < 20) {
-        printf("*(berlari selama 20 menit!)\n\n");
-        printf("Sudah siap untuk lari?\n");
-        printf("*(tekan apapun untuk SIAP)\n");
-        getch();
+            countdown(0, 7, 0);
+            time = 20;
+        } else if(day >= 15 && day < 20) {
+            printf("*(berlari selama 10 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
 
-        countdown(0, 30, 0);
-        time = 30;
-    } else if (day >= 20) {
-        printf("*(berlari selama 45 menit!)\n\n");
-        printf("Sudah siap untuk lari?\n");
-        printf("*(tekan apapun untuk SIAP)\n");
-        getch();
+            countdown(0, 10, 0);
+            time = 25;
+        } else if (day >= 20) {
+            printf("*(berlari selama 15 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
 
-        countdown(0, 45, 0);
-        time = 45;
+            countdown(0, 15, 0);
+            time = 35;
+        }
+
+        printf("Masukkan jarak tempuh lari Anda\n");
+        printf("*(dalam meter)\n");
+        range = scanDouble();
+
+    } else if(bmiScore >= 18.5 && bmiScore <= 24.9) {
+        if(day < 10) {
+            printf("*(berlari selama 15 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
+
+            countdown(0, 15, 0);
+            time = 15;
+        } else if(day >= 10 && day < 15) {
+            printf("*(berlari selama 20 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
+
+            countdown(0, 20, 0);
+            time = 20;
+        } else if(day >= 15 && day < 20) {
+            printf("*(berlari selama 20 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
+
+            countdown(0, 25, 0);
+            time = 25;
+        } else if (day >= 20) {
+            printf("*(berlari selama 35 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
+
+            countdown(0, 35, 0);
+            time = 35;
+        }
+
+        printf("Masukkan jarak tempuh lari Anda\n");
+        printf("*(dalam meter)\n");
+        range = scanDouble();
+
+    } else if(bmiScore > 24.9 && bmiScore <= 29.9) {
+        if(day < 10) {
+            printf("*(berlari selama 5 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
+
+            countdown(0, 5, 0);
+            time = 15;
+        } else if(day >= 10 && day < 15) {
+            printf("*(berlari selama 7 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
+
+            countdown(0, 7, 0);
+            time = 20;
+        } else if(day >= 15 && day < 20) {
+            printf("*(berlari selama 10 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
+
+            countdown(0, 10, 0);
+            time = 25;
+        } else if (day >= 20) {
+            printf("*(berlari selama 15 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
+
+            countdown(0, 15, 0);
+            time = 35;
+        }
+
+        printf("Masukkan jarak tempuh lari Anda\n");
+        printf("*(dalam meter)\n");
+        range = scanDouble();
+
+    } else if(bmiScore > 24.9 && bmiScore <= 34.9) {
+        if(day < 10) {
+            printf("*(berlari selama 5 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
+
+            countdown(0, 5, 0);
+            time = 15;
+        } else if(day >= 10 && day < 15) {
+            printf("*(berlari selama 7 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
+
+            countdown(0, 7, 0);
+            time = 20;
+        } else if(day >= 15 && day < 20) {
+            printf("*(berlari selama 8 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
+
+            countdown(0, 8, 0);
+            time = 25;
+        } else if (day >= 20) {
+            printf("*(berlari selama 10 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
+
+            countdown(0, 10, 0);
+            time = 35;
+        }
+
+        printf("Masukkan jarak tempuh lari Anda\n");
+        printf("*(dalam meter)\n");
+        range = scanDouble();
+
+    } else if(bmiScore > 34.9 && bmiScore <= 39.9) {
+        if(day < 10) {
+            printf("*(berlari selama 5 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
+
+            countdown(0, 5, 0);
+            time = 15;
+        } else if(day >= 10 && day < 15) {
+            printf("*(berlari selama 7 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
+
+            countdown(0, 7, 0);
+            time = 20;
+        } else if(day >= 15 && day < 20) {
+            printf("*(berlari selama 8 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
+
+            countdown(0, 8, 0);
+            time = 25;
+        } else if (day >= 20) {
+            printf("*(berlari selama 10 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
+
+            countdown(0, 10, 0);
+            time = 35;
+        }
+
+        printf("Masukkan jarak tempuh lari Anda\n");
+        printf("*(dalam meter)\n");
+        range = scanDouble();
+
+    } else {
+        if(day < 10) {
+            printf("*(berlari selama 5 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
+
+            countdown(0, 5, 0);
+            time = 15;
+        } else if(day >= 10 && day < 15) {
+            printf("*(berlari selama 6 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
+
+            countdown(0, 6, 0);
+            time = 20;
+        } else if(day >= 15 && day < 20) {
+            printf("*(berlari selama 7 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
+
+            countdown(0, 7, 0);
+            time = 25;
+        } else if (day >= 20) {
+            printf("*(berlari selama 8 menit!)\n\n");
+            printf("Sudah siap untuk lari?\n");
+            printf("*(tekan apapun untuk SIAP)\n");
+            getch();
+
+            countdown(0, 8, 0);
+            time = 35;
+        }
+
+        printf("Masukkan jarak tempuh lari Anda\n");
+        printf("*(dalam meter)\n");
+        range = scanDouble();
     }
-
-    printf("Masukkan jarak tempuh lari Anda\n");
-    printf("*(dalam meter)\n");
-    double range = scanDouble();
 
     return range / time;
 }
 
-// Modular untuk menampilkan leaderboard
+// Modular untuk menampilkan leaderboard - Bayu
 void leaderboard(char *username) {
     struct Challengers {
         char username[100];
@@ -392,7 +735,7 @@ void leaderboard(char *username) {
     printf("---------------\n");
 }
  
-// Modular untuk mengecek apakah user telah memulai tantangan
+// Modular untuk mengecek apakah user telah memulai tantangan - Bayu
 bool checkChallenger(char *username) {
     char tempUsername[100];
     int  tempStartDate;
@@ -422,7 +765,7 @@ bool checkChallenger(char *username) {
     }
 }
 
-// Modular untuk memperbarui skor
+// Modular untuk memperbarui skor - Bayu
 void updateScore(char *username, int day, int score) {
     char tempUsername[100];
     int  tempStartDate;
@@ -447,4 +790,38 @@ void updateScore(char *username, int day, int score) {
 
     remove("files/thirty.txt");
     rename("files/temp_thirty.txt", "files/thirty.txt");
+}
+
+// Modular untuk memperbarui berat badan - Bayu
+void updateWeight(char *username) {
+    char tempFullName[100];
+    char tempUsername[100];
+    char tempPassword[100];
+    int  tempBirthDate;
+    int  tempBirthMonth;
+    int  tempBirthYear;
+    char tempGender;
+    int  tempHeight;
+    int  tempWeight;
+    int  newWeight;
+
+    printf("Mohon masukkan berat badan Anda saat ini\n");
+    printf("*(dalam kg)\n> ");
+    newWeight = scanInteger();
+
+    FILE *profileFile = fopen("files/profile.txt", "r");
+    FILE *tempProfileFile = fopen("files/temp_profile.txt", "w");
+    do {
+        fscanf(profileFile, "%99[^,],%99[^,],%d-%d-%d,%c,%d,%d\n", tempUsername, tempFullName, &tempBirthDate, &tempBirthMonth, &tempBirthYear, &tempGender, &tempHeight, &tempWeight);
+        if(strcmp(username, tempUsername) == 0) {
+            fprintf(tempProfileFile, "%s,%s,%d-%d-%d,%c,%d,%d\n", tempUsername, tempFullName, tempBirthDate, tempBirthMonth, tempBirthYear, tempGender, tempHeight, newWeight);
+        } else {
+            fprintf(tempProfileFile, "%s,%s,%d-%d-%d,%c,%d,%d\n", tempUsername, tempFullName, tempBirthDate, tempBirthMonth, tempBirthYear, tempGender, tempHeight, tempWeight);
+        }
+    } while(!feof(profileFile));
+    fclose(profileFile);
+    fclose(tempProfileFile);
+
+    remove("files/profile.txt");
+    rename("files/temp_profile.txt", "files/profile.txt");
 }
