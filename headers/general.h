@@ -35,6 +35,8 @@ void   convertMonth(int monthNumber, char *monthString);
 bool   checkDate(int date, int month, int year);
 
 double calculateBMI(int height, int weight, char *bmiCategory);
+double calculateBMR(char gender);
+double calculateTDEE();
 
 void   centimetresToFeet(int cms, int *feet, int *inches);
 int    kilogramsToPounds(int kg);

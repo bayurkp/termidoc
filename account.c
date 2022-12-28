@@ -5,7 +5,7 @@
 
 Biodata bioUser;
 
-// Modular untuk masuk atau login
+// Modular untuk masuk atau login - Bayu
 void signIn() {
     char username[100];
     char password[100];
@@ -19,6 +19,7 @@ void signIn() {
     char tempGender;
     int  tempHeight;
     int  tempWeight;
+    char tempBMICategory[100];
 
     printf(BOLD "Sign In\n" BOLD_END);
     printf("---------------\n");
@@ -55,6 +56,7 @@ void signIn() {
             bioUser.gender     = tempGender;
             bioUser.height     = tempHeight;
             bioUser.weight     = tempWeight;
+            bioUser.bmiScore   = calculateBMI(bioUser.height, bioUser.weight, tempBMICategory);
             break;
         }
     } while(!feof(profileFile));
@@ -62,7 +64,7 @@ void signIn() {
     system("cls || clear");
 }
 
-// Modular untuk mendaftar atau sign up
+// Modular untuk mendaftar atau sign up - Bayu
 void signUp() {
     char username[100];
     char password[100];
@@ -107,7 +109,7 @@ void signUp() {
     scanName(fullName);
 
     printf("Mohon masukkan tanggal lahir Anda\n");
-    printf("*(mm-dd-yyyy)\n> ");
+    printf("*(dd-mm-yyyy)\n> ");
     scanDate(tempDate, &birthDate, &birthMonth, &birthYear);
 
     printf("Mohon masukkan gender Anda\n");
@@ -132,7 +134,7 @@ void signUp() {
 
     // Copy data ke file .txt
     FILE *accountFile = fopen("files/account.txt", "a+");
-    fprintf(accountFile, "%s,%s", username, encodedPassword);
+    fprintf(accountFile, "%s,%s\n", username, encodedPassword);
     fclose(accountFile);
     FILE *profileFile = fopen("files/profile.txt", "a+");
     fprintf(profileFile, "%s,%s,%d-%d-%d,%c,%d,%d\n", username, fullName, birthDate, birthMonth, birthYear, gender, height, weight);
@@ -142,7 +144,7 @@ void signUp() {
     signIn();
 }
 
-// Modular untuk mengecek eksistensi username pada account.txt
+// Modular untuk mengecek eksistensi username pada account.txt - Bayu
 bool checkUsername(char *username) {
     char tempUsername[100]; // Variabel untuk menyimpan username dari file
     char tempPassword[100]; // Variabel untuk menyimpan password dari file
@@ -166,7 +168,7 @@ bool checkUsername(char *username) {
     }
 }
 
-// Modular untuk mengecek kesesuaian antara username dan password
+// Modular untuk mengecek kesesuaian antara username dan password - Bayu
 bool checkPassword(char *username, char *encodedPass) {
     char tempUsername[100]; // Variabel untuk menyimpan username dari file
     char tempEncodedPass[100]; // Variabel untuk menyimpan password dari file
@@ -213,7 +215,7 @@ void scanUsername(char *username) {
     // Selesai input dan validasi username
 }
 
-// Modular untuk membuat password
+// Modular untuk membuat password - Bayu
 void scanPassword(char *password) {
     char tempPassword[100];
     char charsPassword; // Karakter untuk yang diinput ke password
@@ -254,7 +256,7 @@ void scanPassword(char *password) {
     strcpy(password, tempPassword);
 }
 
-// Modular untuk menampilkan profil pengguna
+// Modular untuk menampilkan profil pengguna - Bayu
 void myProfile() {
     system("cls || clear");
     printf(BOLD "Profil Saya" BOLD_END);
@@ -340,7 +342,7 @@ void premium(char *username) {
     }
 }
 
-// Modular untuk pembayaran
+// Modular untuk pembayaran - Bayu
 void payment(char *username) {
     system("cls || clear");
     time_t t = time(NULL);
@@ -391,7 +393,7 @@ void payment(char *username) {
     }
 }
 
-// Modular untuk mengidentifikasi akun premium dari user
+// Modular untuk mengidentifikasi akun premium dari user - Bayu
 bool checkPremium(char *username) {
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
@@ -435,7 +437,7 @@ bool checkPremium(char *username) {
     }
 }
 
-// Modular untuk menampilkan #KonsultasiBarengTermy
+// Modular untuk menampilkan #KonsultasiBarengTermy - Bayu
 void konsultasiBarengTermy(char *username) {
     system("cls || clear");
     char confirm;
@@ -499,7 +501,7 @@ void konsultasiBarengTermy(char *username) {
     }
 }
 
-// Modular untuk memperbarui sisa sesi konsultasi
+// Modular untuk memperbarui sisa sesi konsultasi - Bayu
 int updateConsult(char *username) {
     char tempUsername[100];
     int tempDate;
@@ -524,7 +526,7 @@ int updateConsult(char *username) {
     rename("files/temp_premium.txt", "files/premium.txt");
 }
 
-// Modular untuk mengidentifikasi sisa sesi konsultasi
+// Modular untuk mengidentifikasi sisa sesi konsultasi - Bayu
 int checkConsult(char *username) {
     char tempUsername[100];
     int tempDate;

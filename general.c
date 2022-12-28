@@ -5,7 +5,7 @@
 
 extern Biodata bioUser;
 
-// Modular untuk menampilkan pengenalan program
+// Modular untuk menampilkan pengenalan program - Bayu
 void introduction() {
     system("cls || clear");
     printf(BLUE BOLD ". . . . . . . . . . . .\n" RESET);
@@ -61,7 +61,7 @@ void introduction() {
     }
 }
 
-// Modular untuk menampilkan menu utama dari user premium
+// Modular untuk menampilkan menu utama dari user premium - Bayu
 void mainMenuPremium(char gender) {
     system("cls || clear");
     char option;
@@ -148,7 +148,7 @@ void mainMenuPremium(char gender) {
     premium(bioUser.username);
 }
 
-// Modular untuk menampilkan menu utama dari user basic
+// Modular untuk menampilkan menu utama dari user basic - Bayu
 void mainMenuBasic(char gender) {
     system("cls || clear");
     char option;
@@ -227,7 +227,7 @@ void mainMenuBasic(char gender) {
 }
 
 
-// Modular untuk input bertipe data integer
+// Modular untuk input bertipe data integer - Bayu
 int scanInteger() {
     char scan[100], wrongFormat;
     int ret;
@@ -243,7 +243,7 @@ int scanInteger() {
     }
 }
 
-// Modular untuk input bertipe data integer
+// Modular untuk input bertipe data integer - Bayu
 double scanDouble() {
     char scan[100], wrongFormat;
     double ret;
@@ -259,7 +259,7 @@ double scanDouble() {
     }
 }
 
-// Modular untuk input bertipe data integer
+// Modular untuk input bertipe data integer - Bayu
 char scanChar() {
     char scan[100], wrongFormat;
     char ret;
@@ -275,7 +275,7 @@ char scanChar() {
     }
 }
 
-// Modular untuk menerima input nama dan mengubah ke sentence case
+// Modular untuk menerima input nama dan mengubah ke sentence case - Bayu
 void scanName(char *name) {
     while(true) {
         int wrongFormat = 0;
@@ -300,7 +300,7 @@ void scanName(char *name) {
     }
 }
 
-// Modular untuk menerima input tanggal
+// Modular untuk menerima input tanggal - Bayu
 void scanDate(char *tempDate, int *date, int *month, int *year) {
     while(true) {
         scanf("%[^\n]", tempDate);
@@ -317,7 +317,7 @@ void scanDate(char *tempDate, int *date, int *month, int *year) {
     }
 }
 
-// Modular untuk mengonversi angka bulan ke nama bulan
+// Modular untuk mengonversi angka bulan ke nama bulan - Bayu
 void convertMonth(int monthNumber, char *monthString) {
     if(monthNumber == 1) {
         strcpy(monthString, "Januari");
@@ -346,7 +346,7 @@ void convertMonth(int monthNumber, char *monthString) {
     }
 }
 
-// Modular untuk menghitung jumlah tahun kabisat
+// Modular untuk menghitung jumlah tahun kabisat - Bayu
 int countLeapYears(int month, int year) {
     int years = year;
     
@@ -357,7 +357,7 @@ int countLeapYears(int month, int year) {
     return years / 4 - years / 100 + years / 400;
 }
 
-// Modular untuk menghitung jumlah hari dari dua tanggal yang berbeda
+// Modular untuk menghitung jumlah hari dari dua tanggal yang berbeda - Bayu
 int  differenceDate(int firstDate, int firstMonth, int firstYear, int currentDate, int currentMonth, int currentYear) {
     int monthDays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     long int n1 = firstYear * 365 + firstDate;
@@ -378,7 +378,7 @@ int  differenceDate(int firstDate, int firstMonth, int firstYear, int currentDat
     return n2 - n1;
 }
 
-// Menampilkan umur
+// Menampilkan umur - Bayu
 void displayAge(int birthDay, int birthMonth, int birthYear) {
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
@@ -395,7 +395,7 @@ void displayAge(int birthDay, int birthMonth, int birthYear) {
     printf("%d Tahun %d Bulan %d Hari\n", years, months, days);
 }
 
-// Modular untuk validasi tanggal
+// Modular untuk validasi tanggal - Bayu
 bool checkDate(int date, int month, int year) {
     // Validasi tahun
     if(year >= 1900 && year <= 2022) {
@@ -420,8 +420,64 @@ bool checkDate(int date, int month, int year) {
             return false;
         }
 }
+// Modular untuk mengalkulasi BMR - Bayu
+double calculateBMR(char gender) {
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+    int currentDate  = tm.tm_mday;
+    int currentMonth = tm.tm_mon + 1;
+    int currentYear  = tm.tm_year + 1900;
 
-// Modular untuk menghitung skor BMI
+    double bmrScore;
+    int ageDays = differenceDate(bioUser.birthDate, bioUser.birthMonth, bioUser.birthYear, currentDate, currentMonth, currentYear);
+    double ageYears = ageDays / 365;
+    if(gender == 'L') {
+        bmrScore = 66 + (13.7 * (double)bioUser.weight) + (5 * (double)bioUser.height) - (6.8 * ageYears);
+    } else {
+        bmrScore = 655 + (9.6 * (double)bioUser.weight) + (1.8 * (double)bioUser.height) - (4.7 * ageYears);
+    }
+
+    return bmrScore;
+}
+
+// Modular untuk mengalkulasi TDEE - Bayu
+double calculateTDEE() {
+    int activity;
+    double point = 0;
+    printf("\n\nPilih Tingkat Aktivitas Anda\n");
+    printf("[1] Sedentary (tidak berolaharaga + bekerja di meja)\n");
+    printf("[2] Lightly Active (olahraga ringan 1-3 hari / minggu)\n");
+    printf("[3] Moderately Active (olahraga sedang 3-5 hari / minggu)\n");
+    printf("[4] Very Active (olahraga berat 6-7 hari / minggu)\n");
+    printf("[5] Extremely Active (olahraga sangat berat, pekerjaan berat, latihan 2x / hari)\n");
+    printf("---------------\n");
+    printf("Masukkan pilihan Anda\n> ");
+    while (true) {
+        activity = scanInteger();
+        if(activity >= 1 && activity <= 5) {
+            break;
+        } else {
+            printf("Maaf, opsi tidak ada\n> ");
+        }
+    } 
+
+    if(activity == 1) {
+        point += 1.2;
+    } else if(activity == 2) {
+        point += 1.375;
+    } else if(activity == 3) {
+        point += 1.55;
+    } else if(activity == 4) {
+        point += 1.725;
+    } else if(activity == 5) {
+        point += 1.9;
+    }
+
+    double tdeeScore = calculateBMR(bioUser.gender) * point;
+    return tdeeScore;
+}
+
+// Modular untuk menghitung skor BMI - Bayu
 double calculateBMI(int heightCM, int weightKG, char *bmiCategory) {
     double bmiScore;
     bmiScore = (float)weightKG / pow(((float)heightCM / 100), 2);
@@ -443,7 +499,7 @@ double calculateBMI(int heightCM, int weightKG, char *bmiCategory) {
     return bmiScore;
 }
 
-// Modular untuk mengonversi satuan centimeter ke kaki dan inci
+// Modular untuk mengonversi satuan centimeter ke kaki dan inci - Bayu
 void centimetresToFeet(int cms, int *feet, int *inches) {
     int tempCMs    = cms - (cms % 30);
     int tempInches = (cms % 30) / 2.54;
@@ -454,12 +510,12 @@ void centimetresToFeet(int cms, int *feet, int *inches) {
     *inches = tempInches;
 }
 
-// Modular untuk mengonversi satuan kilogram ke pound
+// Modular untuk mengonversi satuan kilogram ke pound - Bayu
 int kilogramsToPounds(int kgs) {
     return kgs * 2.205;
 }
 
-// Modular untuk menampilkan countdown 
+// Modular untuk menampilkan countdown - Bayu
 void countdown(int hours, int minutes, int seconds) {
     while(true) {
 		printf("       \r%d:%d:%d", hours, minutes, seconds);
@@ -480,7 +536,7 @@ void countdown(int hours, int minutes, int seconds) {
     printf("\n");
 }
 
-// Modular untuk melakukan encoding terhadap plain text
+// Modular untuk melakukan encoding terhadap plain text - Bayu
 void encode(char *plain, char *encoded) {
     int i;
     int j;

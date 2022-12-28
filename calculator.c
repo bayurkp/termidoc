@@ -5,12 +5,13 @@
 
 extern Biodata bioUser;
 
+// Modular alur program cek stress - Andri
 void sHeader()
 {
     system("cls || clear");
     printf(BOLD "Kalkulator Stress\n" BOLD_END);
     printf("---------------\n");
-    printf("Fitur Termidoc yang dapat mengkalkulasi\n");
+    printf("Fitur Termidoc yang dapat mengalkulasi\n");
     printf("tingkat stress Anda\n");
     printf("---------------\n");
     printf("*(tekan apapun untuk melanjutkan)");
@@ -19,6 +20,7 @@ void sHeader()
     premium(bioUser.username);
 }
 
+// Modular quiz stress - Andri
 int stressChecking()
 {
     system("cls || clear");
@@ -71,6 +73,7 @@ int stressChecking()
     return result;
 }
 
+// Modular untuk menampilkan level stress - Andri
 void stressLevel(int stressChecking)
 {
     system("cls || clear");
@@ -104,22 +107,29 @@ void stressLevel(int stressChecking)
     getch();
 }
 
-// Function-function cek risiko diabetes
+// Modular alur program cek risiko diabetes - Andri
 void dOpening()
 {
     system("cls || clear");
     printf(BOLD "Kalkulator Risiko Diabetes\n" BOLD_END);
     printf("---------------\n");
-    printf("Fitur Termidoc yang dapat mengkalkulasi\n");
+    printf("Fitur Termidoc yang dapat mengalkulasi\n");
     printf("tingkat risiko diabetes Anda\n");
     printf("---------------\n");
     printf("*(tekan apapun untuk melanjutkan)");
     getch();
     int res = diabetesCheck();
     dCalculation(res);
+
+    double tdee = calculateTDEE();
+    printf("\nKebutuhan kalori Anda perhari adalah " RED "%0.2lf" RESET " kalori\n", tdee);
+
+    printf("*(tekan apapun untuk melanjutkan)");
+    getch();
     premium(bioUser.username);
 }
 
+// Modular quiz diabetes - Andri
 int diabetesCheck()
 {
     system("cls || clear");
@@ -162,20 +172,21 @@ int diabetesCheck()
     return result;
 }
 
+// Modular untuk menampilkan level risiko 
 void dCalculation(int diabetesCheck)
 {
     system("cls || clear");
-    double bmiScore;
+    double bmiScore = bioUser.bmiScore;
     int finalDate;
     int finalMonth;
     int finalYear;
     char risk[50];
 
-    if (bmiScore < 18.5 && bmiScore <= 24.5 && diabetesCheck <= 2 )
+    if (bmiScore <= 24.5 && diabetesCheck <= 2 )
     {
         strcpy(risk, "Risiko Anda terkena diabetes rendah");
     }
-    else if (bmiScore < 18.5 && bmiScore <= 24.5 && diabetesCheck >= 3 && diabetesCheck <= 4)
+    else if (bmiScore <= 24.5 && diabetesCheck >= 3 && diabetesCheck <= 4)
     {
         strcpy(risk, "Risiko Anda terkena diabetes sedang");
     }
@@ -197,22 +208,28 @@ void dCalculation(int diabetesCheck)
     getch();
 }
 
-//function-function cek risiko serangan jantung
+// Modular alur program risiko jantung - Andri
 void jStart()
 {
     system("cls || clear");
     printf(BOLD "Kalkulator Risiko Jantung\n" BOLD_END);
     printf("---------------\n");
-    printf("Fitur Termidoc yang dapat mengkalkulasi\n");
+    printf("Fitur Termidoc yang dapat mengalkulasi\n");
     printf("tingkat risiko penyakit jantung Anda\n");
     printf("---------------\n");
     printf("*(tekan apapun untuk melanjutkan)");
     getch();
     int res = jQuiz();
     calculateRisk(res);
+
+    double tdee = calculateTDEE();
+    printf("\nKebutuhan kalori Anda perhari adalah " RED "%0.2lf" RESET " kalori\n", tdee);
+    printf("*(tekan apapun untuk melanjutkan)");
+    getch();
     premium(bioUser.username);
 }
 
+// Modular quiz risiko jantung - Andri
 int jQuiz()
 {
     system("cls || clear");
@@ -255,10 +272,11 @@ int jQuiz()
     return result;
 }
 
+// Modular untuk menampilkan risiko jantung - Andri
 void calculateRisk(int jQuiz)
 {
     system("cls || clear");
-    double bmiScore;
+    double bmiScore = bioUser.bmiScore;
     int finalDate;
     int finalMonth;
     int finalYear;
@@ -291,15 +309,16 @@ void calculateRisk(int jQuiz)
     getch();
 }
 
-//fungsi perhitungan track menstruasi
 struct Date
 {
     int dd;
     int mm;
     int yy;
 };
+
 struct Date date;
 
+// Modular riwayat haid - Andri
 void hHistory_f()
 {
     system("cls || clear");
@@ -415,6 +434,7 @@ void hHistory_f()
     hHistory = nextHaid;
 }
 
+// Modular ovulasi - Andri
 void ovulation_f()
 {
     system("cls || clear");
@@ -520,6 +540,7 @@ void ovulation_f()
     ovulation = ovulasi;
 }
 
+// Modular awal subur - Andri
 void awalSubur_f()
 {
     system("cls || clear");
@@ -624,6 +645,7 @@ void awalSubur_f()
     awal_subur = awalSubur;
 }
 
+// Modular akhir subur - Andri
 void akhirSubur_f()
 {
     system("cls || clear");
@@ -728,6 +750,7 @@ void akhirSubur_f()
     akhir_subur = akhirSubur;
 }
 
+// Modular hasil tracking menstruasi - Andri
 void trackResult(int hHistory, int ovulation, int awalSubur, int akhirSubur)
 {
     system("cls || clear");
@@ -741,8 +764,7 @@ void trackResult(int hHistory, int ovulation, int awalSubur, int akhirSubur)
     getch();
 }
 
-
-
+// Modular alur program tracking menstruasi - Andri
 void mStart()
 {
     system("cls || clear");

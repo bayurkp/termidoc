@@ -30,14 +30,15 @@ int  checkConsult(char *username);
 int  updateConsult(char *username);
 
 typedef struct Biodata {
-    char username[100];
-    char fullName[100];
-    int  birthDate;
-    int  birthMonth;
-    int  birthYear;
-    char gender;
-    int  height;
-    int  weight;
+    char   username[100];
+    char   fullName[100];
+    int    birthDate;
+    int    birthMonth;
+    int    birthYear;
+    char   gender;
+    int    height;
+    int    weight;
+    double bmiScore;
 } Biodata;
 
 #endif

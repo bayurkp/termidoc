@@ -1,3 +1,5 @@
-admin,Admin,1-1-2001,P,185,85
-alpro,Alpro Aja,10-10-2010,L,195,80
-leeangga,Lee Angga,10-10-1980,P,180,75
+admin,Admin,10-10-1990,L,180,70
+baybay,Bayu,5-5-2005,L,180,70
+andriii,Andri,1-1-2001,P,165,50
+leeangga,Liangga,2-2-2002,L,190,85
+indie,Indi,3-3-2003,L,195,70
